@@ -1,6 +1,3 @@
-// axios 인스턴스 생성
-// - API 클라이언트에 공통된 설정 쉽게 넣을 수 있음
-// axios 사용하지 않는 상황이 왔을 경우, 쉽게 클라이언트 교체가 가능함
 import axios from 'axios';
 
 const client = axios.create();

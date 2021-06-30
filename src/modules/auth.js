@@ -1,4 +1,3 @@
-// auth module
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { takeLatest } from 'redux-saga/effects';
@@ -7,7 +6,7 @@ import createRequestSaga, {
 } from '../lib/createRequestSaga';
 import * as authAPI from '../lib/api/auth';
 
-const CHANGE_FILED = 'auth/CHANGE_FILED';
+const CHANGE_FIELD = 'auth/CHANGE_FIELD';
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
 
 const [REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE] =
@@ -17,10 +16,10 @@ const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] =
   createRequestActionTypes('auth/LOGIN');
 
 export const changeField = createAction(
-  CHANGE_FILED,
+  CHANGE_FIELD,
   ({ form, key, value }) => ({
-    form, // register, login
-    key, // username, password, passwordComfirm
+    form, // register , login
+    key, // username, password, passwordConfirm
     value, // 실제 바꾸려는 값
   }),
 );
@@ -34,7 +33,7 @@ export const login = createAction(LOGIN, ({ username, password }) => ({
   password,
 }));
 
-// 사가 생성
+// saga 생성
 const registerSaga = createRequestSaga(REGISTER, authAPI.register);
 const loginSaga = createRequestSaga(LOGIN, authAPI.login);
 export function* authSaga() {
@@ -44,7 +43,7 @@ export function* authSaga() {
 
 const initialState = {
   register: {
-    uaername: '',
+    username: '',
     password: '',
     passwordConfirm: '',
   },
@@ -58,13 +57,14 @@ const initialState = {
 
 const auth = handleActions(
   {
-    [CHANGE_FILED]: (state, { payload: { form, key, value } }) =>
+    [CHANGE_FIELD]: (state, { payload: { form, key, value } }) =>
       produce(state, (draft) => {
-        draft[form][key] = value; // state.register.username을 바꿈
+        draft[form][key] = value; // 예: state.register.username을 바꾼다
       }),
     [INITIALIZE_FORM]: (state, { payload: form }) => ({
       ...state,
       [form]: initialState[form],
+      authError: null, // 폼 전환 시 회원 인증 에러 초기화
     }),
     // 회원가입 성공
     [REGISTER_SUCCESS]: (state, { payload: auth }) => ({
