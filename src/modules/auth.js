@@ -6,7 +6,6 @@ import createRequestSaga, {
   createRequestActionTypes,
 } from '../lib/createRequestSaga';
 import * as authAPI from '../lib/api/auth';
-import { createReadStream } from 'node:fs';
 
 const CHANGE_FILED = 'auth/CHANGE_FILED';
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM';
