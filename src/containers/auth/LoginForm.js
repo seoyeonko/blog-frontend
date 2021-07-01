@@ -54,7 +54,7 @@ const LoginForm = ({ history }) => {
 
   useEffect(() => {
     if (user) {
-      history.pushState('/');
+      history.push('/');
     }
   }, [history, user]);
 
