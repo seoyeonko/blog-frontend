@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import palette from '../../lib/palette';
+import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 
 // 회원가입/로그인 폼 보여주는 컴포넌트
