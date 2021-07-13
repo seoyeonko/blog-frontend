@@ -32,6 +32,13 @@ const buttonStyle = css`
         background: ${palette.cyan[4]};
       }
     `}
+
+  /* 비활성화 스타일 */
+  &:disabled {
+    background: ${palette.gray[3]};
+    color: ${palette.gray[5]};
+    cursor: not-allowed;
+  }
 `;
 
 const StyledButton = styled.button`
